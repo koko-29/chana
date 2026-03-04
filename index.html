@@ -100,7 +100,7 @@ if(name=="" || dept=="" || classroom=="" || semester=="" || qty==""){
 
 let total = qty * 10;
 
-/* 👉 YOUR WHATSAPP NUMBER (WITH COUNTRY CODE, NO + SIGN) */
+/* YOUR WHATSAPP NUMBER (WITH COUNTRY CODE, NO +) */
 let phone = "917896975241";
 
 let message = `New Chana Order 🥜
@@ -111,9 +111,10 @@ Semester: ${semester}
 Quantity: ${qty}
 Total Price: ₹${total}`;
 
-let whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+/* MOST STABLE WHATSAPP LINK */
+let whatsappURL = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 
-window.open(whatsappURL, "_blank");
+window.location.href = whatsappURL;
 }
 </script>
 
