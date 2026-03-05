@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alony Blanket Wash</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+background:linear-gradient(140deg,#0f2027,#1b3a4b,#2c5364);
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+overflow-x:hidden;
+}
+
+/* animated background glow */
+body::before{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#25d36655,transparent 70%);
+top:-200px;
+left:-200px;
+filter:blur(80px);
+}
+
+body::after{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#4facfe55,transparent 70%);
+bottom:-200px;
+right:-200px;
+filter:blur(80px);
+}
+
+.container{
+width:100%;
+max-width:520px;
+padding:22px;
+}
+
+.brand{
+text-align:center;
+margin-bottom:24px;
+}
+
+.brand h1{
+margin:0;
+font-size:36px;
+font-weight:700;
+letter-spacing:1px;
+background:linear-gradient(90deg,#ffffff,#9be7ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.brand p{
+margin-top:6px;
+font-size:14px;
+opacity:0.8;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(18px);
+border-radius:24px;
+padding:26px;
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 20px 60px rgba(0,0,0,0.45);
+animation:fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+label{
+font-size:13px;
+opacity:0.9;
+display:block;
+margin-top:14px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:6px;
+border-radius:14px;
+border:none;
+font-size:15px;
+background:rgba(255,255,255,0.95);
+color:#222;
+transition:0.2s;
+}
+
+input:focus{
+outline:none;
+transform:scale(1.02);
+box-shadow:0 0 0 2px #4facfe55;
+}
+
+.qtyGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:4px;
+}
+
+.qtyBox{
+background:rgba(255,255,255,0.05);
+padding:12px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.priceBox{
+margin-top:22px;
+padding:18px;
+border-radius:18px;
+background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03));
+border:1px solid rgba(255,255,255,0.15);
+text-align:center;
+}
+
+.priceBox span{
+font-size:12px;
+opacity:0.8;
+}
+
+.totalMoney{
+font-size:28px;
+margin-top:6px;
+font-weight:700;
+color:#ffd166;
+letter-spacing:1px;
+}
+
+button{
+width:100%;
+padding:16px;
+margin-top:24px;
+border:none;
+border-radius:16px;
+font-size:17px;
+font-weight:600;
+background:linear-gradient(135deg,#25d366,#1ebe5d);
+color:white;
+cursor:pointer;
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
+transition:0.25s;
+}
+
+button:hover{
+transform:translateY(-2px) scale(1.02);
+box-shadow:0 14px 40px rgba(0,0,0,0.45);
+}
+
+.footer{
+text-align:center;
+margin-top:18px;
+font-size:12px;
+opacity:0.7;
+}
+
+.badges{
+margin-top:8px;
+font-size:11px;
+opacity:0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="brand">
+<h1>Alony Blanket Wash</h1>
+<p>Premium Blanket Cleaning Service</p>
+<div class="badges">Fast • Hygienic • Trusted</div>
+</div>
+
+<div class="card">
+
+<label>Your Name</label>
+<input id="person" placeholder="Enter your name">
+
+<label>Village Name</label>
+<input id="village" placeholder="Enter village">
+
+<label>Colony / Area</label>
+<input id="colony" placeholder="Enter colony">
+
+<label>Blanket Quantity</label>
+
+<div class="qtyGrid">
+
+<div class="qtyBox">
+<label>Big Blankets (₹500)</label>
+<input id="bigQty" type="tel" inputmode="numeric" placeholder="0" oninput="calculate()">
+</div>
+
+<div class="qtyBox">
+<label>Small Blankets (₹300)</label>
+<input id="smallQty" type="tel" inputmode="numeric" placeholder="0" oninput="calculate()">
+</div>
+
+</div>
+
+<div class="priceBox">
+<span>Estimated Total</span>
+<div class="totalMoney" id="money">₹0</div>
+</div>
+
+<button onclick="sendOrder()">Order via WhatsApp</button>
+
+</div>
+
+<div class="footer">Alony Blanket Wash © Premium Service</div>
+
+</div>
+
+<script>
+let totalMoney=0;
+
+function calculate(){
+let big=document.getElementById('bigQty').value||0;
+let small=document.getElementById('smallQty').value||0;
+
+big=parseInt(big);
+small=parseInt(small);
+
+let total=(big*500)+(small*300);
+
+totalMoney=total;
+
+document.getElementById('money').innerText='₹'+total;
+}
+
+function sendOrder(){
+let name=document.getElementById('person').value;
+let village=document.getElementById('village').value;
+let colony=document.getElementById('colony').value;
+let big=document.getElementById('bigQty').value||0;
+let small=document.getElementById('smallQty').value||0;
+
+if(name==''||village==''||colony==''){
+alert('Please fill your details');
+return;
+}
+
+let message='*Alony Blanket Wash Order*%0A%0A';
+message+=`Name: ${name}%0A`;
+message+=`Village: ${village}%0A`;
+message+=`Colony: ${colony}%0A`;
+
+if(big>0) message+=`Big Blankets: ${big}%0A`;
+if(small>0) message+=`Small Blankets: ${small}%0A`;
+
+message+=`Total Price: ₹${totalMoney}`;
+
+let phone='917896975241';
+
+let url=`https://wa.me/${phone}?text=${message}`;
+window.open(url,'_blank');
+}
+</script>
+
+</body>
+</html>
