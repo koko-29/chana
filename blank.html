@@ -152,12 +152,17 @@ opacity:0.7;
 <div class="qtyGrid">
 
 <div class="qtyBox">
-<label>Big Blankets (₹500)</label>
-<input id="bigQty" type="number" placeholder="0" oninput="calculate()">
+<label>King Size (₹300)</label>
+<input id="kingQty" type="number" placeholder="0" oninput="calculate()">
 </div>
 
 <div class="qtyBox">
-<label>Small Blankets (₹300)</label>
+<label>Medium Size (₹250)</label>
+<input id="mediumQty" type="number" placeholder="0" oninput="calculate()">
+</div>
+
+<div class="qtyBox">
+<label>Small Blankets (₹150)</label>
 <input id="smallQty" type="number" placeholder="0" oninput="calculate()">
 </div>
 
@@ -182,13 +187,15 @@ let totalMoney = 0;
 
 function calculate(){
 
-let big = document.getElementById("bigQty").value || 0;
+let king = document.getElementById("kingQty").value || 0;
+let medium = document.getElementById("mediumQty").value || 0;
 let small = document.getElementById("smallQty").value || 0;
 
-big = parseInt(big);
+king = parseInt(king);
+medium = parseInt(medium);
 small = parseInt(small);
 
-let total = (big * 500) + (small * 300);
+let total = (king * 300) + (medium * 250) + (small * 150);
 
 totalMoney = total;
 
@@ -201,7 +208,9 @@ function sendOrder(){
 let name = document.getElementById("person").value;
 let village = document.getElementById("village").value;
 let colony = document.getElementById("colony").value;
-let big = document.getElementById("bigQty").value || 0;
+
+let king = document.getElementById("kingQty").value || 0;
+let medium = document.getElementById("mediumQty").value || 0;
 let small = document.getElementById("smallQty").value || 0;
 
 if(name=="" || village=="" || colony==""){
@@ -210,12 +219,17 @@ return;
 }
 
 let message = "*Alony Blanket Wash Order*%0A%0A";
+
 message += "Name: " + name + "%0A";
 message += "Village: " + village + "%0A";
 message += "Colony: " + colony + "%0A";
 
-if(big > 0){
-message += "Big Blankets: " + big + "%0A";
+if(king > 0){
+message += "King Size: " + king + "%0A";
+}
+
+if(medium > 0){
+message += "Medium Size: " + medium + "%0A";
 }
 
 if(small > 0){
@@ -236,4 +250,3 @@ window.open(url,"_blank");
 
 </body>
 </html>
-
