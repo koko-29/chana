@@ -62,14 +62,14 @@ box-shadow:0 8px 20px rgba(0,0,0,0.3);
 
 label{
 display:block;
-margin-top:12px;
+margin-top:10px;
 font-size:13px;
 }
 
 input{
 width:100%;
 padding:12px;
-margin-top:5px;
+margin-top:6px;
 border-radius:8px;
 border:none;
 font-size:14px;
@@ -78,14 +78,18 @@ font-size:14px;
 .qtyGrid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:8px;
+gap:12px;
+margin-top:10px;
 }
 
 .qtyBox{
 background:#2d4b60;
-padding:10px;
+padding:12px;
 border-radius:10px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+min-height:100px;
 }
 
 .priceBox{
@@ -114,6 +118,10 @@ color:white;
 font-size:16px;
 font-weight:600;
 cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
 }
 
 .footer{
